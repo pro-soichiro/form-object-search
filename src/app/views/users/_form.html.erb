@@ -1,0 +1,55 @@
+<%= form_with(model: user, url: url) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :born_on %>
+    <%= form.date_select :born_on, { start_year: (Time.now.year), end_year: (Time.now.year - 70), prompt: "--", use_month_numbers: true } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prefecture_id %>
+    <%= form.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '選択してください' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %>
+    <%= form.text_field :detail %>
+  </div>
+
+  <%#= form.fields_for :birthplace do |birthplace_form|%>
+    <%# <div class="field"> %>
+      <%#= birthplace_form.label :prefecture_id %>
+      <%#= birthplace_form.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '選択してください' %>
+    <%# </div> %>
+
+    <%# <div class="field"> %>
+      <%#= birthplace_form.label :detail %>
+      <%#= birthplace_form.text_field :detail %>
+    <%# </div> %>
+  <%# end %>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

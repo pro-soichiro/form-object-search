@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Birthplaces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prefecture</th>
+      <th>Detail</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @birthplaces.each do |birthplace| %>
+      <tr>
+        <td><%= birthplace.prefecture_id %></td>
+        <td><%= birthplace.detail %></td>
+        <td><%= birthplace.user_id %></td>
+        <td><%= link_to 'Show', birthplace %></td>
+        <td><%= link_to 'Edit', edit_birthplace_path(birthplace) %></td>
+        <td><%= link_to 'Destroy', birthplace, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Birthplace', new_birthplace_path %>
