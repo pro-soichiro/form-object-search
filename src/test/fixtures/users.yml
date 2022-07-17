@@ -4,10 +4,8 @@ one:
   last_name: MyString
   first_name: MyString
   born_on: 2022-07-15
-  birthplace: one
 
 two:
   last_name: MyString
   first_name: MyString
   born_on: 2022-07-15
-  birthplace: two
