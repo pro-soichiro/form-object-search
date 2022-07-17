@@ -9,7 +9,7 @@ jobs:
     working_directory: ~/form-object-search/src
     steps:
       - checkout:
-          path: ~/form-object-search/src
+          path: ~/form-object-search
       - ruby/install-deps
 
   test:
@@ -28,7 +28,7 @@ jobs:
     working_directory: ~/form-object-search/src
     steps:
       - checkout:
-          path:~/form-object-search
+          path: ~/form-object-search
       - ruby/install-deps
       - run:
           name: Database setup
