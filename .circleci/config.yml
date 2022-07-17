@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.6
     working_directory: ~/form-object-search/src
     steps:
       - checkout:
@@ -14,7 +14,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.6
       - image: circleci/mysql:5.5
         environment:
           MYSQL_ROOT_PASSWORD: password
@@ -29,6 +29,7 @@ jobs:
     steps:
       - checkout:
           path: ~/form-object-search
+
       - ruby/install-deps
       - run:
           name: Database setup
