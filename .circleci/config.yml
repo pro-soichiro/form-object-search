@@ -10,7 +10,9 @@ jobs:
     steps:
       - checkout:
           path: ~/form-object-search
-      - ruby/install-deps
+      - run:
+          name: Bundle install
+          command: bundle install
 
   test:
     docker:
@@ -29,7 +31,9 @@ jobs:
     steps:
       - checkout:
           path: ~/form-object-search
-      - ruby/install-deps
+      - run:
+          name: Bundle install
+          command: bundle install
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
