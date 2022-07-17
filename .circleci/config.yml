@@ -1,12 +1,12 @@
 version: 2.1
 orbs:
-  ruby: cimg/ruby@1.1.2
-  heroku: cimg/heroku@1.2.3
+  ruby: circleci/ruby@1.1.2
+  heroku: circleci/heroku@1.2.3
 
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.7
+      - image: circleci/ruby:2.7-node-browsers-legacy
     working_directory: ~/form-object-search/src
     steps:
       - checkout:
@@ -15,8 +15,8 @@ jobs:
 
   test:
     docker:
-      - image: cimg/ruby:2.7
-      - image: cimg/mysql:5.5
+      - image: circleci/ruby:2.7-node-browsers-legacy
+      - image: circleci/mysql:5.5
         environment:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: app_test
@@ -40,7 +40,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/ruby:2.7
+      - image: circleci/ruby:2.7-node-browsers-legacy
     steps:
       - checkout
       - setup_remote_docker:
