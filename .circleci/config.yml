@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.1.2
+  ruby: circleci/ruby@1.8.0
 
 jobs:
   build:
@@ -27,6 +27,8 @@ jobs:
       RAILS_ENV: test
     working_directory: ~/form-object-search/src
     steps:
+      - checkout:
+          path: ~/form-object-search
       - ruby/install-deps
       - run:
           name: Database setup
