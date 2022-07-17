@@ -27,8 +27,6 @@ jobs:
       RAILS_ENV: test
     working_directory: ~/form-object-search/src
     steps:
-      - checkout:
-          path: ~/form-object-search
       - ruby/install-deps
       - run:
           name: Database setup
