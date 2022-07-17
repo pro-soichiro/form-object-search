@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.8.0
+  ruby: circleci/ruby@1.1.2
 
 jobs:
   build:
@@ -10,9 +10,7 @@ jobs:
     steps:
       - checkout:
           path: ~/form-object-search
-      - run:
-          name: Bundle install
-          command: bundle install
+      - ruby/install-deps
 
   test:
     docker:
@@ -31,9 +29,7 @@ jobs:
     steps:
       - checkout:
           path: ~/form-object-search
-      - run:
-          name: Bundle install
-          command: bundle install
+      - ruby/install-deps
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
