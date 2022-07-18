@@ -25,11 +25,11 @@ Prefecture.create([
   { name: '鹿児島県'}, { name: '沖縄県'}
 ])
 
-100.times do |n|
+500.times do |n|
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name:  Faker::Name.last_name,
-    born_on: Faker::Date.between(from: '1980-01-01', to: '2000-12-31')
+    born_on: Faker::Date.between(from: '1960-01-01', to: '2000-12-31')
     )
   Birthplace.create!(
     prefecture_id: Faker::Number.between(from: 1, to: 47),
