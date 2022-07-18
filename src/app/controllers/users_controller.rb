@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
+  before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
     @form = UsersSearchForm.new(users_search_form_params)
@@ -10,23 +10,16 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = UserForm.new
-  end
-
-  def edit
-    @user = UserForm.find(params[:id])
-    puts @user
-    puts @user.class
-    # @user = UserForm.edit(params[:id])
+    @form = UserForm.new
   end
 
   def create
-    @user = UserForm.new(user_form_params)
+    @form = UserForm.new(user_form_params)
 
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to users_url, notice: "User was successfully created." }
-        # format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+      if @form.save
+        @user = User.last
+        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,9 +28,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @form = UserForm.new(user: @user)
+  end
+
   def update
+    @form = UserForm.new(user_form_params, user: @user)
+
     respond_to do |format|
-      if @user.update(user_form_params)
+      if @form.save
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -62,9 +61,7 @@ class UsersController < ApplicationController
     end
 
     def user_form_params
-      return {} if params[:users_search_form].blank?
-      # params.require(:user_form).permit(:last_name, :first_name, :born_on, birthplace: [:prefecture_id, :detail])
-      params.require(:user_form).permit(:last_name, :first_name, :born_on, :prefecture_id, :detail)
+      params.require(:user).permit(UserForm::ATTRIBUTES)
     end
 
     def users_search_form_params
