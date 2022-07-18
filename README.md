@@ -12,6 +12,7 @@ Ruby2.7.5
     * pushされたとき、テストが走るようにした
     * mainブランチにマージされたとき、デプロイされるようにした
   * githubにpushされた時、LINE通知が来るようにした
+  * default-mysql-clientをinstallすることでDBにアクセスできるようにした
 
 * Reference materials
   * https://takaokouji.github.io/output/form-object/
