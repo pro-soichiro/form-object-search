@@ -1,13 +1,14 @@
 class PrefecturesController < ApplicationController
-  before_action :set_prefecture, only: %i[ show edit update destroy ]
+  before_action :set_prefecture, only: %i[ edit update destroy ]
 
   # GET /prefectures or /prefectures.json
   def index
-    @prefectures = Prefecture.all
+    @prefectures = Prefecture.preload(:users)
   end
 
   # GET /prefectures/1 or /prefectures/1.json
   def show
+    @prefecture = Prefecture.preload(:users).find(params[:id])
   end
 
   # GET /prefectures/new
