@@ -9,12 +9,12 @@
   <%= form.search_field :last_name %>
   <%= form.label :first_name %>
   <%= form.search_field :first_name %>
-  <%= form.label :start_born_on %>
-  <%= form.date_select :start_born_on, { start_year: (Time.now.year), end_year: (Time.now.year - 70), prompt: "--", use_month_numbers: true} %>
-  <%= form.label :end_born_on %>
-  <%= form.date_select :end_born_on, { start_year: (Time.now.year), end_year: (Time.now.year - 70), prompt: "--", use_month_numbers: true} %>
+  <%= form.label :born_on_year %>
+  <%= form.select :born_on_year, 1960..2000, include_blank: '年' %>
+  <%= form.label :born_on_month %>
+  <%= form.select :born_on_month, 1..12, include_blank: '月' %>
   <%= form.label :prefecture_id %>
-  <%= form.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '選択してください' %>
+  <%= form.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '出身地' %>
   <%= form.submit '検索' %>
 <% end %>
 
