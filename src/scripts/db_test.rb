@@ -10,7 +10,7 @@ end
 Prefecture.transaction do
   convert_count = 0
 
-  10.times do |n|
+  10000.times do |n|
     Prefecture.create(name: "#{n + 1}回目")
     convert_count = n
     puts n + 1
